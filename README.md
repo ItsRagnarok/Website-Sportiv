@@ -9,7 +9,7 @@ Site static (HTML/CSS/JS, fără build) pentru A.C. Club Neamț, cu formular de 
 - `assets/css/style.css` — toate stilurile
 - `assets/js/main.js` — meniu mobil + validare și trimitere formular
 - `assets/img/logo.svg` — siglă generată (înlocuiește cu sigla oficială când o ai, vezi mai jos)
-- `assets/img/hero.png` — poza reală a jucătorului, folosită în hero
+- `assets/img/hero.jpg` — poza reală a jucătorului, folosită în hero
 
 ## Înlocuirea siglei cu cea oficială
 
@@ -17,11 +17,17 @@ Site static (HTML/CSS/JS, fără build) pentru A.C. Club Neamț, cu formular de 
 
 ## Conectarea formularului la Google Sheets (Drive)
 
-Am creat deja un Google Sheet în Drive-ul contului `findnaza@gmail.com`, numit **„Înscrieri A.C. Club Neamț”**, cu antetul de coloane pregătit:
+Am creat un folder dedicat în Drive-ul contului `findnaza@gmail.com`, numit **„Înscrieri Proiect Sportiv”**:
 
-https://docs.google.com/spreadsheets/d/1l7JxLVmJ7LxFgYIzDixXm5qNm7CbUhcJ3_04v_lbqA4/edit
+https://drive.google.com/drive/folders/1B-Jqo3IVPSGjC3lcDAq9tH8bZTBLOGkr
 
-Fiecare trimitere a formularului va adăuga automat un rând nou în acest Sheet, **instant** (mai rapid decât actualizare din oră în oră). Din motive de securitate Google, ultimul pas — publicarea scriptului care primește datele — trebuie făcut manual, o singură dată, direct din contul tău Google (nu poate fi automatizat din exterior). Durează 2 minute:
+În el se află Sheet-ul **„Înscrieri A.C. Club Neamț”**, cu antetul de coloane pregătit:
+
+https://docs.google.com/spreadsheets/d/1W7fLkIvjM6BYJTbccce233voTl2pQ03UfvMg7dwzaoY/edit
+
+(Există și o copie mai veche a Sheet-ului, în afara folderului — poți s-o ștergi, e goală și nu mai e folosită.)
+
+Fiecare trimitere a formularului adaugă automat un rând nou în acest Sheet, **instant**, chiar în momentul completării — nu trebuie să aștepți o actualizare orară. Din motive de securitate Google, ultimul pas — publicarea scriptului care primește datele — trebuie făcut manual, o singură dată, direct din contul tău Google (nu poate fi automatizat din exterior). Durează 2 minute:
 
 1. Deschide Sheet-ul de mai sus.
 2. Meniu **Extensii → Apps Script**.
@@ -65,5 +71,3 @@ Fiecare trimitere a formularului va adăuga automat un rând nou în acest Sheet
 11. Salvează și republică site-ul (sau doar reîncarcă local dacă testezi pe calculator).
 
 După acest pas, orice completare a formularului de pe site apare automat ca un rând nou în Google Sheet, cu data/ora, numele părintelui, telefon, email, vârsta copilului, nivel și interesul selectat.
-
-**Notă:** dacă preferi actualizare din oră în oră în loc de instant (de ex. pentru a agrega mai multe cereri într-un raport orar), pot adăuga în plus un trigger orar în Apps Script care trimite un rezumat pe email — spune-mi dacă vrei și asta.
