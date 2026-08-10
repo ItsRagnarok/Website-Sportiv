@@ -8,17 +8,12 @@ Site static (HTML/CSS/JS, fără build) pentru A.C. Club Neamț, cu formular de 
 - `despre-noi.html`, `antrenamente.html`, `grupe.html`, `galerie.html`, `contact.html` — pagini placeholder, gata de completat
 - `assets/css/style.css` — toate stilurile
 - `assets/js/main.js` — meniu mobil + validare și trimitere formular
-- `assets/img/logo.svg` — siglă generată (înlocuiește cu sigla reală când o ai)
-- `assets/img/hero-placeholder.svg` — imagine placeholder pentru hero (înlocuiește cu poza reală, vezi mai jos)
+- `assets/img/logo.svg` — siglă generată (înlocuiește cu sigla oficială când o ai, vezi mai jos)
+- `assets/img/hero.png` — poza reală a jucătorului, folosită în hero
 
-## Înlocuirea imaginilor cu cele reale
+## Înlocuirea siglei cu cea oficială
 
-Fișierele din `assets/img/` sunt momentan ilustrații generate, deoarece pozele trimise în conversație nu au ajuns ca fișiere pe disc. Pentru a pune poza reală a jucătorului:
-
-1. Salvează poza ca `assets/img/hero.jpg`
-2. În `index.html`, în secțiunea `.hero-media`, schimbă `src="assets/img/hero-placeholder.svg"` în `src="assets/img/hero.jpg"`
-
-La fel și pentru siglă, dacă ai fișierul oficial: salvează-l ca `assets/img/logo.png` (sau `.svg`) și înlocuiește referințele `assets/img/logo.svg` din toate paginile.
+`assets/img/logo.svg` este momentan o siglă generată, apropiată ca stil de cea din mockup. Dacă ai fișierul oficial: salvează-l ca `assets/img/logo.png` (sau `.svg`) și înlocuiește referințele `assets/img/logo.svg` din toate paginile (`index.html` și cele 5 pagini secundare).
 
 ## Conectarea formularului la Google Sheets (Drive)
 
