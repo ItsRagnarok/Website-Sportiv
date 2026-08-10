@@ -8,12 +8,8 @@ Site static (HTML/CSS/JS, fără build) pentru A.C. Club Neamț, cu formular de 
 - `despre-noi.html`, `antrenamente.html`, `grupe.html`, `galerie.html`, `contact.html` — pagini placeholder, gata de completat
 - `assets/css/style.css` — toate stilurile
 - `assets/js/main.js` — meniu mobil + validare și trimitere formular
-- `assets/img/logo.svg` — siglă generată (înlocuiește cu sigla oficială când o ai, vezi mai jos)
+- `assets/img/logo-official.jpg` — sigla oficială a clubului
 - `assets/img/hero.jpg` — poza reală a jucătorului, folosită în hero
-
-## Înlocuirea siglei cu cea oficială
-
-`assets/img/logo.svg` este momentan o siglă generată, apropiată ca stil de cea din mockup. Dacă ai fișierul oficial: salvează-l ca `assets/img/logo.png` (sau `.svg`) și înlocuiește referințele `assets/img/logo.svg` din toate paginile (`index.html` și cele 5 pagini secundare).
 
 ## Conectarea formularului la Google Sheets (Drive)
 

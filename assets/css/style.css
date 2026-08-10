@@ -22,12 +22,19 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.5;
+  touch-action: pan-y;
 }
 
 img {
@@ -82,6 +89,7 @@ ul {
 .brand img {
   height: 48px;
   width: auto;
+  border-radius: 8px;
 }
 
 .main-nav {
@@ -550,7 +558,198 @@ ul {
 
 .footer-brand img {
   height: 34px;
-  filter: brightness(0) invert(1);
+  width: auto;
+  background: #fff;
+  padding: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Motion ---------- */
+.site-header {
+  transition: box-shadow 0.25s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow);
+}
+
+.main-nav a {
+  position: relative;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 0;
+  height: 2px;
+  background: var(--green-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  transform: scaleX(1);
+}
+
+.main-nav a.active {
+  border-color: transparent;
+}
+
+.btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.hero-feature .icon {
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.hero-feature:hover .icon {
+  transform: translateY(-4px) scale(1.06);
+  background: #e8f3ec;
+}
+
+.choice-options label {
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s ease;
+}
+
+.choice-options label:active {
+  transform: scale(0.97);
+}
+
+.footer-tagline .ball-icon svg {
+  animation: spin-slow 14s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero: plays automatically on page load — always above the fold, so a
+   scroll-triggered reveal would never be seen. */
+html.js-anim .hero-copy {
+  animation: fade-in-left 0.8s ease both;
+}
+
+html.js-anim .hero-media {
+  animation: fade-in-right 0.8s ease both, float-y 6s ease-in-out 0.8s infinite;
+}
+
+html.js-anim .hero-features .hero-feature {
+  opacity: 0;
+  animation: fade-in-up 0.6s ease forwards;
+}
+
+html.js-anim .hero-features .hero-feature:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+html.js-anim .hero-features .hero-feature:nth-child(2) {
+  animation-delay: 0.46s;
+}
+
+html.js-anim .hero-features .hero-feature:nth-child(3) {
+  animation-delay: 0.57s;
+}
+
+/* Everything else: scroll-triggered via IntersectionObserver ([data-reveal] + .is-visible) */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+html.js-anim [data-reveal] {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+html.js-anim [data-reveal="up"] {
+  transform: translateY(28px);
+}
+
+html.js-anim [data-reveal="left"] {
+  transform: translateX(-28px);
+}
+
+html.js-anim [data-reveal="right"] {
+  transform: translateX(28px);
+}
+
+html.js-anim [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js-anim [data-reveal],
+  html.js-anim .hero-copy,
+  html.js-anim .hero-media,
+  html.js-anim .hero-features .hero-feature {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  .footer-tagline .ball-icon svg {
+    animation: none;
+  }
+
+  .btn:active {
+    transform: none;
+  }
 }
 
 /* ---------- Responsive ---------- */

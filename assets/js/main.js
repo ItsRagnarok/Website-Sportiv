@@ -1,4 +1,45 @@
 // ------------------------------------------------------------------
+// Scroll animations (progressive enhancement — content is visible by
+// default; this class only hides it if JS + IntersectionObserver run)
+// ------------------------------------------------------------------
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+if ("IntersectionObserver" in window && !prefersReducedMotion) {
+  document.documentElement.classList.add("js-anim");
+
+  const revealTargets = document.querySelectorAll("[data-reveal]");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+  );
+
+  revealTargets.forEach((el) => revealObserver.observe(el));
+}
+
+// ------------------------------------------------------------------
+// Header shadow on scroll
+// ------------------------------------------------------------------
+const siteHeader = document.querySelector(".site-header");
+
+if (siteHeader) {
+  const updateHeaderShadow = () => {
+    siteHeader.classList.toggle("scrolled", window.scrollY > 8);
+  };
+  updateHeaderShadow();
+  window.addEventListener("scroll", updateHeaderShadow, { passive: true });
+}
+
+// ------------------------------------------------------------------
 // Mobile nav toggle
 // ------------------------------------------------------------------
 const navToggle = document.getElementById("nav-toggle");
