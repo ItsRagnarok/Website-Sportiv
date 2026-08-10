@@ -24,7 +24,7 @@ if (navToggle && mainNav) {
 // After creating the Apps Script Web App described in README.md, paste
 // its deployment URL below. Until it's set, submissions are only
 // validated in the browser and are NOT saved anywhere.
-const GOOGLE_SCRIPT_URL = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFTenrnjcuEBL7hd9xOk7YMYV0zj64-p1YfaKiTUa5mYuvZ3cDb9sKxj439mj5eaSlvw/exec";
 
 const form = document.getElementById("signup-form");
 
