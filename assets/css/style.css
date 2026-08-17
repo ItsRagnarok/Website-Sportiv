@@ -476,6 +476,247 @@ ul {
   color: var(--text-muted);
 }
 
+/* ---------- Prose block (narrative pages) ---------- */
+.prose {
+  max-width: 74ch;
+  margin: 0 auto;
+}
+
+.prose h2 {
+  color: var(--green-dark);
+  font-size: 1.4rem;
+  margin: 40px 0 14px;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  color: var(--text-muted);
+  margin: 0 0 16px;
+  max-width: none;
+}
+
+.prose p.lead-line {
+  color: var(--green-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.prose ul {
+  margin: 0 0 16px;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* ---------- Info list (schedule / facts) ---------- */
+.info-list {
+  display: grid;
+  gap: 16px;
+  margin: 32px auto 0;
+  max-width: 74ch;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.info-item .icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--green-dark);
+}
+
+.info-item .icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.info-item strong {
+  display: block;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.info-item span {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Team grid (Antrenori) ---------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.team-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.team-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.avatar-initials {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green-dark);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.team-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.team-card .role {
+  display: block;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-top: 2px;
+}
+
+.team-card p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin: 0 0 10px;
+}
+
+.team-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Groups list ---------- */
+.mt-lg {
+  margin-top: 32px;
+}
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.group-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.group-card .group-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.group-card .group-coach {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.group-card .group-badge {
+  flex-shrink: 0;
+  background: var(--green-dark);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* ---------- Contact block ---------- */
+.contact-block {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  margin-top: 32px;
+  padding: 28px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.contact-block .contact-name {
+  font-weight: 700;
+  color: var(--green-dark);
+  margin: 0 0 4px;
+}
+
+.contact-block .contact-role {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.contact-phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.closing-line {
+  text-align: center;
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 1.15rem;
+  margin-top: 40px;
+}
+
+@media (max-width: 620px) {
+  .contact-block {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .contact-block .contact-phone-link {
+    justify-content: center;
+  }
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   background: var(--green-dark);
