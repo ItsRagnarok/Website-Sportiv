@@ -60,6 +60,49 @@ if (navToggle && mainNav) {
 }
 
 // ------------------------------------------------------------------
+// Photo lightbox (Galerie page) — click a thumbnail to see it full-size
+// ------------------------------------------------------------------
+const galleryPhotos = document.querySelectorAll(".photo-item img");
+
+if (galleryPhotos.length) {
+  const lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+  lightbox.innerHTML = `
+    <button class="lightbox-close" aria-label="Închide">&times;</button>
+    <img class="lightbox-img" src="" alt="">
+  `;
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector(".lightbox-img");
+  const lightboxClose = lightbox.querySelector(".lightbox-close");
+
+  function openLightbox(img) {
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add("open");
+    document.body.classList.add("lightbox-open");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    document.body.classList.remove("lightbox-open");
+    lightboxImg.src = "";
+  }
+
+  galleryPhotos.forEach((img) => {
+    img.addEventListener("click", () => openLightbox(img));
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeLightbox();
+  });
+}
+
+// ------------------------------------------------------------------
 // Signup form: validation + submission to Google Sheets (Drive)
 // ------------------------------------------------------------------
 // After creating the Apps Script Web App described in README.md, paste
