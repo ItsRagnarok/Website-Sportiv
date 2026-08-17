@@ -599,6 +599,71 @@ ul {
   font-size: 0.95rem;
 }
 
+.video-embed video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0a2318;
+  object-fit: cover;
+}
+
+/* ---------- Photo gallery ---------- */
+.gallery-section-title {
+  margin: 48px 0 20px;
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.page-content .gallery-section-title:first-child {
+  margin-top: 0;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.photo-grid.photo-grid-portrait {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.photo-item {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.photo-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.photo-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.photo-grid-portrait .photo-item img {
+  aspect-ratio: 1 / 1;
+}
+
+.photo-item figcaption {
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+  text-align: center;
+}
+
 /* ---------- Team grid (Antrenori) ---------- */
 .team-grid {
   display: grid;
