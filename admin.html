@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — A.C. Club Neamț</title>
+<link rel="icon" href="assets/img/logo-official.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="admin-shell">
+  <header class="admin-header">
+    <div class="brand-mini">
+      <img src="assets/img/logo-official.jpg" alt="Sigla A.C. Club Neamț">
+      Panou de administrare
+    </div>
+    <button type="button" class="btn-logout" id="admin-logout" hidden>Ieși din cont</button>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-login-box" id="admin-login-box">
+      <h1>Autentificare</h1>
+      <p>Introdu parola de administrator pentru a modifica pozele și clipurile de pe site.</p>
+      <form id="admin-login-form">
+        <input type="password" id="admin-password" placeholder="Parolă" autocomplete="current-password" required>
+        <p class="admin-login-error" id="admin-login-error"></p>
+        <button type="submit" class="btn btn-primary">Intră în cont</button>
+      </form>
+    </div>
+
+    <div class="admin-categories" id="admin-categories" hidden></div>
+  </main>
+</div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

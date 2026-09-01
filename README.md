@@ -5,9 +5,13 @@ Site static (HTML/CSS/JS, fără build) pentru A.C. Club Neamț, cu formular de 
 ## Structură
 
 - `index.html` — pagina principală (hero + formular de înscriere)
-- `despre-noi.html`, `antrenamente.html`, `grupe.html`, `galerie.html`, `contact.html` — pagini placeholder, gata de completat
+- `despre-noi.html`, `antrenamente.html`, `antrenori.html`, `grupe.html`, `galerie.html`, `contact.html` — paginile site-ului
+- `admin.html` — panou de administrare, protejat cu parolă (vezi mai jos)
 - `assets/css/style.css` — toate stilurile
-- `assets/js/main.js` — meniu mobil + validare și trimitere formular
+- `assets/js/main.js` — meniu mobil, animații, validare și trimitere formular
+- `assets/js/dynamic-content.js` — aplică pe site pozele/clipurile încărcate din panoul de admin
+- `assets/js/admin.js` — logica panoului de administrare
+- `api/` — funcții serverless Vercel folosite de panoul de admin (login, upload, ștergere, listare)
 - `assets/img/logo-official.jpg` — sigla oficială a clubului
 - `assets/img/hero.jpg` — poza reală a jucătorului, folosită în hero
 
@@ -67,3 +71,27 @@ Fiecare trimitere a formularului adaugă automat un rând nou în acest Sheet, *
 11. Salvează și republică site-ul (sau doar reîncarcă local dacă testezi pe calculator).
 
 După acest pas, orice completare a formularului de pe site apare automat ca un rând nou în Google Sheet, cu data/ora, numele părintelui, telefon, email, vârsta copilului, nivel și interesul selectat.
+
+## Panoul de administrare (`admin.html`)
+
+Un link discret **„Admin”** apare în subsolul fiecărei pagini. Din panou se pot încărca sau șterge:
+
+- sigla site-ului și poza hero de pe Acasă (fiecare are un singur loc — o poză nouă o înlocuiește pe cea veche)
+- clipuri video suplimentare pentru Galerie
+- poze suplimentare pentru fiecare din cele 5 grupe din Galerie
+
+Fișierele urcate din admin apar automat pe site, în câteva secunde, fără să mai fie nevoie de o republicare. Pozele/clipurile puse acum direct în cod rămân neschimbate — cele din admin se adaugă suplimentar lângă ele.
+
+Ca să funcționeze, panoul are nevoie de o configurare unică, din contul tău Vercel (nu se poate face automat din exterior, e nevoie de acces la panoul tău Vercel):
+
+1. **Creează spațiul de stocare pentru poze/clipuri.** În Vercel, intră pe proiectul `website-sportiv` → tab **Storage** → **Create Database** → alege **Blob** → dă-i un nume (ex. `gallery`) → **Create**. Când ți se cere să-l conectezi la proiect, alege `website-sportiv` — Vercel adaugă automat variabila `BLOB_READ_WRITE_TOKEN`.
+2. **Setează parola de admin.** Tot pe proiect, tab **Settings → Environment Variables** → adaugă:
+   - Key: `ADMIN_PASSWORD`
+   - Value: parola pe care vrei s-o folosești pentru a intra în `admin.html` (alege una greu de ghicit)
+   - Environment: bifează minim **Production**
+   → **Save**.
+3. **Redeploy.** Din tab **Deployments**, la ultimul deploy din `claude/website-creation-kvxxfu`, meniul `...` → **Redeploy** (ca variabilele noi să fie active).
+
+După acești pași, intri pe `<adresa-site-ului>/admin.html`, pui parola de la pasul 2, și poți încărca/șterge poze și clipuri direct din browser.
+
+*(Dacă acești pași nu au fost încă făcuți, panoul de admin arată o eroare la login în loc să te lase înăuntru — restul site-ului funcționează normal, neafectat.)*

@@ -971,6 +971,22 @@ body.lightbox-open {
   border-radius: 6px;
 }
 
+.footer-admin-link {
+  text-align: center;
+  padding: 10px 0 18px;
+  background: var(--green-dark);
+}
+
+.footer-admin-link a {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.footer-admin-link a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* ---------- Motion ---------- */
 .site-header {
   transition: box-shadow 0.25s ease;
@@ -1246,4 +1262,213 @@ html.js-anim [data-reveal].is-visible {
     flex-direction: column;
     text-align: center;
   }
+}
+
+/* ---------- Admin panel ---------- */
+.admin-shell {
+  min-height: 100vh;
+  background: var(--bg-soft, #f4f7f5);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header {
+  background: var(--green-dark);
+  color: #fff;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-header .brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.admin-header .brand-mini img {
+  height: 32px;
+  width: auto;
+  background: #fff;
+  padding: 3px;
+  border-radius: 6px;
+}
+
+.admin-header .btn-logout {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-header .btn-logout:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.admin-main {
+  flex: 1;
+  padding: 32px 20px 64px;
+}
+
+.admin-login-box {
+  max-width: 360px;
+  margin: 80px auto;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+}
+
+.admin-login-box h1 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+}
+
+.admin-login-box p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 20px;
+}
+
+.admin-login-box input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.admin-login-error {
+  color: #b3261e;
+  font-size: 0.85rem;
+  margin: -6px 0 14px;
+  min-height: 1.2em;
+}
+
+.admin-categories {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.admin-category {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.admin-category h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.admin-category .admin-category-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 16px;
+}
+
+.admin-dropzone {
+  display: block;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.admin-dropzone:hover,
+.admin-dropzone.dragover {
+  border-color: var(--green-dark);
+  background: var(--bg-soft, #f4f7f5);
+}
+
+.admin-dropzone input[type="file"] {
+  display: none;
+}
+
+.admin-thumb-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.admin-thumb {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #eee;
+}
+
+.admin-thumb img,
+.admin-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.admin-thumb .admin-thumb-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.admin-thumb .admin-thumb-delete:hover {
+  background: #b3261e;
+}
+
+.admin-status {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+
+.admin-status.error {
+  color: #b3261e;
+}
+
+.admin-status.success {
+  color: var(--green-dark);
+}
+
+.admin-empty {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+
+.admin-setup-notice {
+  max-width: 640px;
+  margin: 24px auto 0;
+  background: #fff8e1;
+  border: 1px solid #f0d98c;
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 0.88rem;
+  color: #6b5300;
+  line-height: 1.5;
 }

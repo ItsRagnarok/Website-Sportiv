@@ -60,11 +60,12 @@ if (navToggle && mainNav) {
 }
 
 // ------------------------------------------------------------------
-// Photo lightbox (Galerie page) — click a thumbnail to see it full-size
+// Photo lightbox (Galerie page) — click a thumbnail to see it full-size.
+// Uses event delegation so it also covers photos added dynamically by
+// dynamic-content.js (admin-uploaded images), not just the ones present
+// at page load.
 // ------------------------------------------------------------------
-const galleryPhotos = document.querySelectorAll(".photo-item img");
-
-if (galleryPhotos.length) {
+if (document.querySelector(".photo-grid")) {
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
   lightbox.innerHTML = `
@@ -89,8 +90,9 @@ if (galleryPhotos.length) {
     lightboxImg.src = "";
   }
 
-  galleryPhotos.forEach((img) => {
-    img.addEventListener("click", () => openLightbox(img));
+  document.addEventListener("click", (event) => {
+    const img = event.target.closest(".photo-item img");
+    if (img) openLightbox(img);
   });
 
   lightboxClose.addEventListener("click", closeLightbox);
