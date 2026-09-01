@@ -1,9 +1,15 @@
 // ------------------------------------------------------------------
-// Applies admin-panel overrides (logo, hero) and additions (extra
-// gallery photos/clips) on top of the site's static defaults.
+// Applies admin-panel content (logo, hero, gallery photos/clips) on
+// top of the site's static defaults.
 //
-// Fails silently if the admin panel hasn't been set up yet, or the API
-// isn't reachable (e.g. viewing the site off Vercel) — the static
+// Rule: for a given photo/video category, if the admin panel has ANY
+// uploaded items for it, those items REPLACE the static ones baked
+// into the page (no duplicates). If the admin hasn't touched that
+// category yet, the static defaults already in the HTML are left
+// exactly as they are.
+//
+// Fails silently if the admin panel hasn't been set up yet, or the
+// API isn't reachable (e.g. viewing the site off Vercel) — the static
 // content already in the page keeps working either way.
 // ------------------------------------------------------------------
 (async function () {
@@ -29,6 +35,18 @@
     heroImg.src = hero.url;
   }
 
+  // Derives a human label from an uploaded file's storage path, e.g.
+  // "photos/copii-postari-18-19/1788300000000-doroftei-matei.jpg"
+  // -> "Doroftei Matei". Falls back to null if nothing usable remains.
+  function labelFromPathname(pathname) {
+    const filename = (pathname || "").split("/").pop() || "";
+    const withoutExt = filename.replace(/\.[a-zA-Z0-9]+$/, "");
+    const withoutTimestamp = withoutExt.replace(/^\d{10,}-/, "");
+    const words = withoutTimestamp.replace(/[-_]+/g, " ").trim();
+    if (!words) return null;
+    return words.replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
   const photoCategoryKeys = [
     "grupa-2012-2013",
     "grupa-2016-2017",
@@ -42,22 +60,36 @@
     const items = data[`photos/${categoryKey}`];
     if (!grid || !items || !items.length) return;
 
+    grid.innerHTML = "";
+
     items.forEach((item) => {
       const figure = document.createElement("figure");
       figure.className = "photo-item";
+
       const img = document.createElement("img");
       img.src = item.url;
-      img.alt = grid.dataset.alt || "Poză A.C. Club Neamț";
       img.loading = "lazy";
+
+      const derivedLabel = categoryKey === "copii-postari-18-19" ? labelFromPathname(item.pathname) : null;
+      img.alt = derivedLabel || grid.dataset.alt || "Poză A.C. Club Neamț";
       figure.appendChild(img);
+
+      if (derivedLabel) {
+        const caption = document.createElement("figcaption");
+        caption.textContent = derivedLabel;
+        figure.appendChild(caption);
+      }
+
       grid.appendChild(figure);
     });
   });
 
   const videoGrid = document.querySelector(".video-grid");
-  const extraClips = data["video/clips"];
-  if (videoGrid && extraClips && extraClips.length) {
-    extraClips.forEach((clip) => {
+  const clips = data["video/clips"];
+  if (videoGrid && clips && clips.length) {
+    videoGrid.innerHTML = "";
+
+    clips.forEach((clip) => {
       const card = document.createElement("div");
       card.className = "video-card";
 
@@ -77,7 +109,7 @@
 
       const caption = document.createElement("p");
       caption.className = "video-card-caption";
-      caption.textContent = "Antrenament";
+      caption.textContent = labelFromPathname(clip.pathname) || "Antrenament";
 
       card.appendChild(embed);
       card.appendChild(caption);
